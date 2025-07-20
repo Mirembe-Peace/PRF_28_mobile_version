@@ -22853,7 +22853,7 @@ function WebGLTextures( _gl, extensions, state, properties, capabilities, utils,
 
 			if ( texture.minFilter !== NearestFilter && texture.minFilter !== LinearFilter ) {
 
-				console.warn( 'THREE.WebGLRenderer: Texture is not power of two. Texture.minFilter should be set to THREE.NearestFilter or THREE.LinearFilter.' );
+				console.log( 'THREE.WebGLRenderer: Texture is not power of two. Texture.minFilter should be set to THREE.NearestFilter or THREE.LinearFilter.' );
 
 			}
 
@@ -23343,7 +23343,16 @@ function WebGLTextures( _gl, extensions, state, properties, capabilities, utils,
 
 			for ( let i = 0; i < 6; i ++ ) {
 
+				
+				if ( ! isCompressed && ! isDataTexture ) {
+
+					cubeImage[ i ] = resizeImage( texture.image[ i ], false, true, maxCubemapSize );
+
+				} else {
+
 					cubeImage[ i ] = isDataTexture ? texture.image[ i ].image : texture.image[ i ];
+
+				}
 
 				cubeImage[ i ] = verifyColorSpace( texture, cubeImage[ i ] );
 
